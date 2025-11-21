@@ -1,0 +1,6 @@
+pandas
+flask
+pywin32
+pycaw
+comtypes
+pynput
