@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Recovery Module</title>
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Remove scrollbar completely */
+        html, body {
+            overflow: hidden;
+            height: 100%;
+        }
+
+        body {
+            background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #0d1b2a);
+            background-size: 400% 400%;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        /* Animated Gradient Background */
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Floating Particles Background */
+        .floating-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .floating-particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(76, 201, 240, 0.15), transparent);
+            animation: floatParticle 25s infinite linear;
+        }
+
+        .particle-1 {
+            width: 120px;
+            height: 120px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+            animation-duration: 30s;
+        }
+
+        .particle-2 {
+            width: 80px;
+            height: 80px;
+            top: 60%;
+            right: 10%;
+            animation-delay: -5s;
+            animation-duration: 35s;
+        }
+
+        .particle-3 {
+            width: 150px;
+            height: 150px;
+            bottom: 20%;
+            left: 15%;
+            animation-delay: -10s;
+            animation-duration: 40s;
+        }
+
+        .particle-4 {
+            width: 100px;
+            height: 100px;
+            top: 30%;
+            right: 20%;
+            animation-delay: -15s;
+            animation-duration: 32s;
+        }
+
+        /* Moving Grid */
+        .moving-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 200%;
+            background: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -2;
+            animation: gridMove 20s linear infinite;
+            transform-origin: center;
+        }
+
+        /* Enhanced Pulsing Orbs with More Movement */
+        .pulsing-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+            z-index: -2;
+            animation: enhancedFloat 20s ease-in-out infinite;
+        }
+
+        .pulse-1 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, #4361ee, transparent);
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .pulse-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #7209b7, transparent);
+            bottom: 10%;
+            right: 15%;
+            animation-delay: -7s;
+        }
+
+        .pulse-3 {
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, #4cc9f0, transparent);
+            top: 50%;
+            left: 70%;
+            animation-delay: -14s;
+        }
+
+        /* PERFECTLY CONTINUOUS WAVES */
+        .wave-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                rgba(76, 201, 240, 0.6) 0%,
+                rgba(67, 97, 238, 0.8) 25%,
+                rgba(114, 9, 183, 0.7) 50%,
+                rgba(76, 201, 240, 0.6) 75%,
+                rgba(67, 97, 238, 0.8) 100%);
+            animation: seamlessWaveMove 15s linear infinite;
+            border-radius: 50% 50% 0 0;
+        }
+
+        .wave-1 {
+            height: 140px;
+            opacity: 0.8;
+            animation-duration: 20s;
+            animation-delay: 0s;
+        }
+
+        .wave-2 {
+            height: 120px;
+            opacity: 0.7;
+            animation-duration: 18s;
+            animation-delay: -2s;
+        }
+
+        .wave-3 {
+            height: 100px;
+            opacity: 0.6;
+            animation-duration: 16s;
+            animation-delay: -4s;
+        }
+
+        .wave-4 {
+            height: 80px;
+            opacity: 0.5;
+            animation-duration: 14s;
+            animation-delay: -6s;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header styles */
+        .header {
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            background: linear-gradient(90deg, #4cc9f0, #4361ee, #7209b7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        /* Description styles */
+        .description {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .description strong {
+            color: #4cc9f0;
+        }
+
+        /* Button styles */
+        .btn-container {
+            margin: 30px 0;
+            animation: fadeIn 1s ease-out 0.6s both;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #4361ee 0%, #7209b7 100%);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+            position: relative;
+            overflow: hidden;
+            outline: none;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.6);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        /* Animation container */
+        .animation-container {
+            display: none;
+            position: relative;
+            width: 100%;
+            height: 400px;
+            margin: 40px 0;
+            perspective: 1000px;
+        }
+
+        .animation-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Step display */
+        .step-display {
+            font-size: 2.2rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #4cc9f0;
+            text-shadow: 0 0 10px rgba(76, 201, 240, 0.5);
+        }
+
+        /* ENHANCED PROGRESS BAR - More Visible */
+        .progress-container {
+            width: 80%;
+            height: 12px; /* Increased height */
+            background: rgba(0, 0, 0, 0.4); /* Darker background for contrast */
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 30px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, 
+                #4cc9f0 0%, 
+                #4361ee 30%, 
+                #7209b7 70%, 
+                #f72585 100%);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            box-shadow: 
+                0 0 15px rgba(76, 201, 240, 0.8),
+                0 0 30px rgba(67, 97, 238, 0.6),
+                inset 0 2px 4px rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Add shimmer effect to progress bar */
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.4), 
+                transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        /* Animated elements */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.7;
+            z-index: -1;
+        }
+
+        .animation-orb-1 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, #4361ee 0%, transparent 70%);
+            top: 10%;
+            left: 10%;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .animation-orb-2 {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, #7209b7 0%, transparent 70%);
+            bottom: 10%;
+            right: 10%;
+            animation: float 12s infinite ease-in-out reverse;
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, #4cc9f0, transparent);
+            opacity: 0;
+            animation: particleFloat 8s infinite linear;
+        }
+
+        /* Success message */
+        .success-container {
+            display: none;
+            animation: fadeIn 1s ease-out;
+            margin-top: 40px;
+        }
+
+        .success-container h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 30px;
+            color: #4ade80;
+            text-shadow: 0 0 15px rgba(74, 222, 128, 0.5);
+        }
+
+        .success-message {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(20px, -20px);
+            }
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(100px, -80px) rotate(90deg);
+            }
+            50% {
+                transform: translate(200px, 50px) rotate(180deg);
+            }
+            75% {
+                transform: translate(50px, 100px) rotate(270deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+
+        @keyframes enhancedFloat {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            20% {
+                transform: translate(150px, -100px) scale(1.1);
+            }
+            40% {
+                transform: translate(-100px, 120px) scale(0.9);
+            }
+            60% {
+                transform: translate(200px, 80px) scale(1.2);
+            }
+            80% {
+                transform: translate(-150px, -120px) scale(0.95);
+            }
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+        }
+
+        @keyframes gridMove {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(-50px, -50px);
+            }
+        }
+
+        /* PERFECTLY SEAMLESS WAVE ANIMATION */
+        @keyframes seamlessWaveMove {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 200%;
+            }
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(0.8);
+                opacity: 0;
+            }
+            5% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) translateX(calc(var(--x) * 100px)) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .description, .success-message {
+                padding: 20px;
+                font-size: 1rem;
+            }
+            
+            .step-display {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 15px 30px;
+                font-size: 1.1rem;
+            }
+
+            .floating-particle {
+                width: 80px !important;
+                height: 80px !important;
+            }
+            
+            .pulsing-orb {
+                width: 200px !important;
+                height: 200px !important;
+            }
+            
+            .wave-1 { height: 100px; }
+            .wave-2 { height: 80px; }
+            .wave-3 { height: 60px; }
+            .wave-4 { height: 40px; }
+            
+            .animation-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Beautiful Moving Background -->
+    <div class="floating-bg">
+        <div class="floating-particle particle-1"></div>
+        <div class="floating-particle particle-2"></div>
+        <div class="floating-particle particle-3"></div>
+        <div class="floating-particle particle-4"></div>
+        <div class="moving-grid"></div>
+        <div class="pulsing-orb pulse-1"></div>
+        <div class="pulsing-orb pulse-2"></div>
+        <div class="pulsing-orb pulse-3"></div>
+    </div>
+
+    <!-- Perfectly Continuous Waves -->
+    <div class="wave-container">
+        <div class="wave wave-1"></div>
+        <div class="wave wave-2"></div>
+        <div class="wave wave-3"></div>
+        <div class="wave wave-4"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>System Recovery Module</h1>
+        </div>
+        
+        <div class="description">
+            <p>The <strong>Recovery Module</strong> is designed to quickly restore system functionality in the event of abnormal behavior. If you encounter issues such as media audio stopping unexpectedly, USB devices not functioning properly, or the software not performing as expected, simply press the "Start" button below to initiate the recovery process. The module will then scan the system for any unusual changes, deadlocks, or other disruptions. If any issues are detected, it will attempt to automatically recover the system and software, ensuring minimal downtime and restoring normal operations without the need for a full restart or manual troubleshooting.</p>
+        </div>
+        
+        <div class="btn-container">
+            <button id="startBtn" class="btn">Start Recovery</button>
+        </div>
+        
+        <div class="animation-container" id="animationContainer">
+            <div class="animation-content">
+                <div class="step-display" id="stepDisplay"></div>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+            <div class="orb animation-orb-1"></div>
+            <div class="orb animation-orb-2"></div>
+            <div class="particles" id="particlesContainer"></div>
+        </div>
+        
+        <div class="success-container" id="successContainer">
+            <h2>Recovery Module Executed Successfully</h2>
+            <div class="success-message">
+                <p>The Recovery Module has now completed its process and should have resolved all identified issues. You can now enjoy an error-free experience. If the problem persists, it's likely that the issue is not caused by our software, as the recovery module thoroughly checks and addresses all potential scenarios that could go wrong during operation. We recommend verifying your system for any external issues or conflicts that may be affecting performance.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const startBtn = document.getElementById('startBtn');
+            const animationContainer = document.getElementById('animationContainer');
+            const stepDisplay = document.getElementById('stepDisplay');
+            const progressBar = document.getElementById('progressBar');
+            const successContainer = document.getElementById('successContainer');
+            const particlesContainer = document.getElementById('particlesContainer');
+            
+            let particlesCreated = false;
+            
+            // Recovery steps
+            const steps = [
+                "Activating Recovery Module",
+                "Scanning for System Errors",
+                "Identifying Critical Issues",
+                "Prioritizing Fixes",
+                "Resolving Problems",
+                "Verifying System Integrity",
+                "Preparing for Restart",
+                "Restoring Full Functionality",
+                "Recovery Complete"
+            ];
+            
+            startBtn.addEventListener('click', function() {
+                // Hide initial content and show animation
+                startBtn.disabled = true;
+                document.querySelector('.description').style.display = 'none';
+                animationContainer.style.display = 'block';
+                
+                // Call Flask server function - no response expected
+                fetch('/initiate_recovery', {
+                    method: 'POST'
+                }).catch(error => {
+                    console.error('Error:', error);
+                });
+                
+                // Create particles immediately when animation starts
+                if (!particlesCreated) {
+                    createParticles();
+                    particlesCreated = true;
+                } else {
+                    // Reset particles if they already exist
+                    resetParticles();
+                }
+                
+                // Start animation (independent of backend)
+                startAnimation();
+            });
+            
+            function startAnimation() {
+                let currentStep = 0;
+                const totalSteps = steps.length;
+                const stepDuration = 1300; // 1.3 seconds per step
+                
+                function showNextStep() {
+                    if (currentStep < totalSteps) {
+                        // Update progress
+                        const progress = (currentStep / totalSteps) * 100;
+                        progressBar.style.width = `${progress}%`;
+                        
+                        // Show current step
+                        stepDisplay.textContent = steps[currentStep];
+                        
+                        currentStep++;
+                        
+                        // Schedule next step after 1.3 seconds
+                        setTimeout(showNextStep, stepDuration);
+                    } else {
+                        // Animation complete, show success message
+                        setTimeout(function() {
+                            animationContainer.style.display = 'none';
+                            successContainer.style.display = 'block';
+                        }, 1000);
+                    }
+                }
+                
+                showNextStep();
+            }
+            
+            function createParticles() {
+                for (let i = 0; i < 50; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                    // Random properties with increased size
+                    const size = Math.random() * 8 + 6; // Increased from 4px to 6-14px
+                    const posX = Math.random() * 100;
+                    const delay = Math.random() * 2; // Reduced delay for immediate start
+                    const duration = Math.random() * 6 + 6; // 6-12 seconds
+                    
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${posX}%`;
+                    particle.style.animationDelay = `${delay}s`;
+                    particle.style.animationDuration = `${duration}s`;
+                    particle.style.setProperty('--x', Math.random() * 2 - 1);
+                    
+                    particlesContainer.appendChild(particle);
+                }
+            }
+            
+            function resetParticles() {
+                // Remove all existing particles
+                particlesContainer.innerHTML = '';
+                // Create new particles
+                createParticles();
+            }
+        });
+    </script>
+</body>
+</html>

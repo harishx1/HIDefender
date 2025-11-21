@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - HIDefender</title>
+    <style>
+        /* Global Styles - New Theme */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        :root {
+            --primary: #159895;
+            --primary-dark: #12827a;
+            --primary-light: #57c5b6;
+            --secondary: #1a5f7a;
+            --accent: #ff9a3c;
+            --accent-dark: #e68a36;
+            --accent-light: #ffb570;
+            --dark: #0a1929;
+            --darker: #051220;
+            --light: #f0f8ff;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --card-bg: rgba(255, 255, 255, 0.07);
+            --card-border: rgba(255, 255, 255, 0.12);
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Geometric Background Animation */
+        .geometric-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            opacity: 0.4;
+        }
+
+        .shape {
+            position: absolute;
+            background: var(--primary);
+            opacity: 0.1;
+            animation: float 20s infinite linear;
+        }
+
+        .shape:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 10%;
+            left: 5%;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            background: var(--primary);
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            left: 80%;
+            border-radius: 50% 50% 50% 0%;
+            background: var(--secondary);
+            animation-delay: -5s;
+        }
+
+        .shape:nth-child(3) {
+            width: 120px;
+            height: 120px;
+            top: 30%;
+            left: 60%;
+            border-radius: 63% 37% 37% 63% / 53% 37% 63% 47%;
+            background: var(--accent);
+            animation-delay: -10s;
+        }
+
+        .shape:nth-child(4) {
+            width: 80px;
+            height: 80px;
+            top: 80%;
+            left: 10%;
+            border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
+            background: var(--primary-light);
+            animation-delay: -15s;
+        }
+
+        .shape:nth-child(5) {
+            width: 200px;
+            height: 200px;
+            top: 15%;
+            left: 85%;
+            border-radius: 50%;
+            background: var(--accent-light);
+            animation-delay: -7s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+            25% {
+                transform: translateY(-20px) rotate(90deg) scale(1.1);
+            }
+            50% {
+                transform: translateY(10px) rotate(180deg) scale(0.9);
+            }
+            75% {
+                transform: translateY(-15px) rotate(270deg) scale(1.05);
+            }
+        }
+
+        /* Navigation */
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-5px);
+        }
+
+        .back-btn svg {
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
+            fill: white;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+        }
+
+        .logo-icon svg {
+            width: 22px;
+            height: 22px;
+            fill: white;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 3rem 5% 5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 4px 20px rgba(21, 152, 149, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Content Sections */
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5% 5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: 700;
+            color: var(--light);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            border-radius: 3px;
+        }
+
+        /* Feature Cards - Different Style */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 5rem;
+        }
+
+        .feature-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+            border-radius: 20px;
+            padding: 2.5rem;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transform-style: preserve-3d;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(21, 152, 149, 0.1) 0%, rgba(255, 154, 60, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: -1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.15);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            box-shadow: 
+                0 8px 20px rgba(21, 152, 149, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .feature-icon svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        /* Mission Section */
+        .mission-section {
+            background: linear-gradient(135deg, rgba(21, 152, 149, 0.1), rgba(26, 95, 122, 0.1));
+            border-radius: 20px;
+            padding: 3rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transform: translateX(-100%);
+            animation: missionShine 8s ease-in-out infinite;
+        }
+
+        @keyframes missionShine {
+            0%, 100% {
+                transform: translateX(-100%);
+            }
+            50% {
+                transform: translateX(100%);
+            }
+        }
+
+        .mission-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            text-align: center;
+        }
+
+        .mission-section p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            text-align: center;
+            font-size: 1.1rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Values Section */
+        .values-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 5rem;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            box-shadow: 0 10px 20px rgba(21, 152, 149, 0.3);
+            animation: valuePulse 4s ease-in-out infinite;
+        }
+
+        @keyframes valuePulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 10px 20px rgba(21, 152, 149, 0.3);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 15px 30px rgba(21, 152, 149, 0.5);
+            }
+        }
+
+        .value-icon svg {
+            width: 36px;
+            height: 36px;
+            fill: white;
+        }
+
+        .value-item h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .value-item p {
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1.5rem 5%;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            position: relative;
+            background: rgba(5, 18, 32, 0.7);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 10;
+        }
+
+        .footer-slogan {
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            font-size: 1rem;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientFlow 4s ease-in-out infinite;
+        }
+
+        @keyframes gradientFlow {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mission-section {
+                padding: 2rem;
+            }
+            
+            .values-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Geometric Background Animation -->
+    <div class="geometric-bg">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-container">
+        <a href="/" class="back-btn">
+            <svg viewBox="0 0 24 24">
+                <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+            </svg>
+            Back to Dashboard
+        </a>
+        <div class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11.5C14.8,11.8 15,12 15.3,12H16.5C16.9,12 17.2,11.7 17.2,11.3V10C17.2,7.1 14.7,5 12,5C9.3,5 6.8,7.1 6.8,10V11.3C6.8,11.7 7.1,12 7.5,12H8.7C9,12 9.2,11.8 9.2,11.5V10C9.2,8.6 10.6,7 12,7M13,13.5C13,14.3 12.3,15 11.5,15S10,14.3 10,13.5C10,12.7 10.7,12 11.5,12S13,12.7 13,13.5Z" />
+                </svg>
+            </div>
+            <div class="logo-text">HIDefender</div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>About HIDefender</h1>
+        <p>Advanced protection designed specifically for personal computers, putting your security and privacy at the forefront with lightweight, real-time defense against malicious USB devices.</p>
+    </section>
+
+    <!-- Features Section -->
+    <section class="content-section">
+        <h2 class="section-title">Why HIDefender?</h2>
+        <div class="features-grid">
+            <!-- Personal Computer Focus -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4,6H20V16H4M20,18A2,2 0 0,0 22,16V6C22,4.89 21.1,4 20,4H4C2.89,4 2,4.89 2,6V16A2,2 0 0,0 4,18H0V20H24V18H20Z" />
+                    </svg>
+                </div>
+                <h3>Personal Computer Focus</h3>
+                <p>Designed specifically for individual users and their personal computers. We understand that your computer is your personal space, and we're committed to keeping it secure without compromising performance.</p>
+            </div>
+
+            <!-- Security & Privacy -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11.5C14.8,11.8 15,12 15.3,12H16.5C16.9,12 17.2,11.7 17.2,11.3V10C17.2,7.1 14.7,5 12,5C9.3,5 6.8,7.1 6.8,10V11.3C6.8,11.7 7.1,12 7.5,12H8.7C9,12 9.2,11.8 9.2,11.5V10C9.2,8.6 10.6,7 12,7M13,13.5C13,14.3 12.3,15 11.5,15S10,14.3 10,13.5C10,12.7 10.7,12 11.5,12S13,12.7 13,13.5Z" />
+                    </svg>
+                </div>
+                <h3>Security & Privacy First</h3>
+                <p>Your privacy is our priority. HIDefender operates locally on your device, ensuring no personal data leaves your computer. We believe in transparency and user control over security decisions.</p>
+            </div>
+
+            <!-- Lightweight Protection -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12,3L2,12H5V20H19V12H22L12,3M12,7.7C14.1,7.7 15.8,9.4 15.8,11.5C15.8,14.5 12,18 12,18C12,18 8.2,14.5 8.2,11.5C8.2,9.4 9.9,7.7 12,7.7M12,10C11.17,10 10.5,10.67 10.5,11.5C10.5,12.33 11.17,13 12,13C12.83,13 13.5,12.33 13.5,11.5C13.5,10.67 12.83,10 12,10Z" />
+                    </svg>
+                </div>
+                <h3>Lightweight & Efficient</h3>
+                <p>Optimized to use minimal system resources while providing maximum protection. HIDefender runs quietly in the background without slowing down your computer or interrupting your workflow.</p>
+            </div>
+
+            <!-- Real-Time Protection -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M13,2.03V2.05L13,4.05C17.39,4.59 20.5,8.58 19.96,12.97C19.5,16.61 16.64,19.5 13,19.93V21.93C18.5,21.38 22.5,16.5 21.95,11C21.5,6.25 17.73,2.5 13,2.03M11,2.06C9.05,2.25 7.19,3 5.67,4.26L7.1,5.74C8.22,4.84 9.57,4.26 11,4.06V2.06M4.26,5.67C3,7.19 2.25,9.04 2.05,11H4.05C4.24,9.58 4.8,8.23 5.69,7.1L4.26,5.67M2.06,13C2.26,14.96 3.03,16.81 4.27,18.33L5.69,16.9C4.81,15.77 4.24,14.42 4.06,13H2.06M7.1,18.37L5.67,19.74C7.18,21 9.04,21.79 11,22V20C9.58,19.82 8.23,19.25 7.1,18.37M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z" />
+                    </svg>
+                </div>
+                <h3>Real-Time Protection</h3>
+                <p>Continuously monitors all USB activity in real-time, instantly detecting and blocking malicious devices before they can execute harmful commands on your system.</p>
+            </div>
+        </div>
+
+        <!-- Mission Section -->
+        <div class="mission-section">
+            <h2>Our Mission</h2>
+            <p>At HIDefender, we believe that everyone deserves robust security without complexity. We're committed to providing personal computer users with enterprise-grade protection against USB-based threats in a simple, lightweight package that respects your privacy and system resources.</p>
+        </div>
+
+        <!-- Values Section -->
+        <h2 class="section-title">Our Core Values</h2>
+        <div class="values-container">
+            <div class="value-item">
+                <div class="value-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.22,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.22,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.68 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z" />
+                    </svg>
+                </div>
+                <h3>User-Centric Design</h3>
+                <p>We prioritize the needs of individual users, creating solutions that are intuitive and accessible to everyone.</p>
+            </div>
+
+            <div class="value-item">
+                <div class="value-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11.5C14.8,11.8 15,12 15.3,12H16.5C16.9,12 17.2,11.7 17.2,11.3V10C17.2,7.1 14.7,5 12,5C9.3,5 6.8,7.1 6.8,10V11.3C6.8,11.7 7.1,12 7.5,12H8.7C9,12 9.2,11.8 9.2,11.5V10C9.2,8.6 10.6,7 12,7M13,13.5C13,14.3 12.3,15 11.5,15S10,14.3 10,13.5C10,12.7 10.7,12 11.5,12S13,12.7 13,13.5Z" />
+                    </svg>
+                </div>
+                <h3>Transparency</h3>
+                <p>We believe in being open about how our software works and what data it accesses.</p>
+            </div>
+
+            <div class="value-item">
+                <div class="value-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M2,10.96C1.5,10.68 1.35,10.07 1.63,9.59L3.13,7C3.24,6.8 3.41,6.66 3.6,6.58L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.66,6.72 20.82,6.88 20.91,7.08L22.36,9.6C22.64,10.08 22.47,10.69 22,10.96L21,11.54V16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V10.96C2.7,11.13 2.32,11.14 2,10.96M12,4.15V4.15L12,10.85V10.85L17.96,7.5L12,4.15M5,15.91L11,19.29V12.58L5,9.21V15.91M19,15.91V12.69L14,15.59C13.67,15.77 13.3,15.76 13,15.6V19.29L19,15.91M13.85,13.36L20.13,9.73L19.55,8.72L13.27,12.35L13.85,13.36Z" />
+                    </svg>
+                </div>
+                <h3>Innovation</h3>
+                <p>Continuously improving our detection algorithms to stay ahead of emerging threats.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-slogan">Made with passion for security</div>
+    </footer>
+</body>
+</html>
