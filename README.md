@@ -30,29 +30,15 @@ HIDefender is an advanced, lightweight security solution designed to detect and 
 ## ✨ **Key Features**
 
 ### 🎯 **Real-time Detection**
-- Instant HID device behavior analysis
-- Pattern recognition for malicious payloads
-- Continuous monitoring of USB input streams
 
 ### 🛡️ **Proactive Prevention**
-- Automatic blocking of suspicious HID commands
-- Quarantine mode for unknown devices
-- Real-time alert system for attack attempts
 
 ### 📊 **Comprehensive Logging**
-- Detailed attack attempt records
-- Device fingerprinting and tracking
-- CSV-based log management
 
 ### 🔄 **System Recovery**
-- Automated system restoration post-attack
-- Audio device recovery capabilities
-- One-click system state restoration
 
 ### 🎮 **User-Friendly Interface**
-- Simple web-based dashboard
-- Real-time status monitoring
-- One-click protection toggles
+
 
 ---
 
@@ -130,6 +116,31 @@ HIDefender is an advanced, lightweight security solution designed to detect and 
 
 ---
 
+
+## 📸 **Screenshots**
+
+![Dashboard Interface]
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/6b430e5b-b18d-4904-a341-ae50e54ea22e" />
+*Main dashboard showing real-time protection status*
+
+
+![Attack Logs]
+<img width="1900" height="1079" alt="image" src="https://github.com/user-attachments/assets/01b3dcce-18bd-4723-aca3-be72192c6233" />
+*Detailed logs of detected attack attempts*
+
+
+![Recovery Panel]
+<img width="1916" height="1079" alt="image" src="https://github.com/user-attachments/assets/98149735-e5f3-48b0-bd68-080b595f59a4" />
+*System recovery and restoration interface*
+
+---
+
+## 📞 **Contact & Inquiries**
+
+**GitHub:** harishx1
+
+---
+
 ## ⚠️ **Copyright & Usage Restrictions**
 
 ### **© 2024 HIDefender Project. All Rights Reserved.**
@@ -153,34 +164,9 @@ This project is protected under copyright law. All intellectual property rights 
 
 ---
 
-## 📸 **Screenshots**
-
-![Dashboard Interface]
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/6b430e5b-b18d-4904-a341-ae50e54ea22e" />
-*Main dashboard showing real-time protection status*
-
-
-![Attack Logs]
-<img width="1900" height="1079" alt="image" src="https://github.com/user-attachments/assets/01b3dcce-18bd-4723-aca3-be72192c6233" />
-*Detailed logs of detected attack attempts*
-
-
-![Recovery Panel]
-<img width="1916" height="1079" alt="image" src="https://github.com/user-attachments/assets/98149735-e5f3-48b0-bd68-080b595f59a4" />
-*System recovery and restoration interface*
-
----
-
-## 📞 **Contact & Inquiries**
-
-**Email:** [your-email@example.com]  
-**GitHub:** [Your GitHub Profile]
-
----
-
 <div align="center">
 
-**🛡️ Protecting the unprotected, one device at a time 🛡️**
+**🛡️ Made With Passion For Security! 🛡️**
 
 *Enterprise-grade security for every personal computer user*
 
