@@ -10,6 +10,26 @@ HIDefender is an advanced, lightweight security solution designed to detect and 
 
 ---
 
+
+## 📸 **Screenshots**
+
+![Dashboard Interface]
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/6b430e5b-b18d-4904-a341-ae50e54ea22e" />
+*Main dashboard showing real-time protection status*
+
+
+![Attack Logs]
+<img width="1900" height="1079" alt="image" src="https://github.com/user-attachments/assets/01b3dcce-18bd-4723-aca3-be72192c6233" />
+*Detailed logs of detected attack attempts*
+
+
+![Recovery Panel]
+<img width="1916" height="1079" alt="image" src="https://github.com/user-attachments/assets/98149735-e5f3-48b0-bd68-080b595f59a4" />
+*System recovery and restoration interface*
+
+---
+
+
 ## 🛡️ **The Threat Landscape**
 
 ### **Alarming Statistics:**
@@ -116,24 +136,6 @@ HIDefender is an advanced, lightweight security solution designed to detect and 
 
 ---
 
-
-## 📸 **Screenshots**
-
-![Dashboard Interface]
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/6b430e5b-b18d-4904-a341-ae50e54ea22e" />
-*Main dashboard showing real-time protection status*
-
-
-![Attack Logs]
-<img width="1900" height="1079" alt="image" src="https://github.com/user-attachments/assets/01b3dcce-18bd-4723-aca3-be72192c6233" />
-*Detailed logs of detected attack attempts*
-
-
-![Recovery Panel]
-<img width="1916" height="1079" alt="image" src="https://github.com/user-attachments/assets/98149735-e5f3-48b0-bd68-080b595f59a4" />
-*System recovery and restoration interface*
-
----
 
 ## 📞 **Contact & Inquiries**
 
