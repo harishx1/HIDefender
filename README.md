@@ -70,7 +70,7 @@ HIDefender is an advanced, lightweight security solution designed to detect and 
 - JavaScript (ES6+)
 
 ### **Backend**
-- Python 3.x
+- Python 3.13
 - Flask Framework
 - Custom HID Detection Algorithms
 
