@@ -155,7 +155,8 @@ This project is protected under copyright law. All intellectual property rights 
 
 ## 📸 **Screenshots**
 
-![Dashboard Interface](screenshots/dashboard.png)
+![Dashboard Interface]
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/6b430e5b-b18d-4904-a341-ae50e54ea22e" />
 *Main dashboard showing real-time protection status*
 
 ![Attack Logs](screenshots/logs.png)
