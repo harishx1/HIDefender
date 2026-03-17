@@ -143,29 +143,6 @@ Recovery Panel
 
 ---
 
-## ⚠️ **Copyright & Usage Restrictions**
-
-### **© 2024 HIDefender Project. All Rights Reserved.**
-
-This project is protected under copyright law. All intellectual property rights including but not limited to source code, detection algorithms, system architecture, and documentation are exclusively owned by the developer.
-
-### **❌ Strictly Prohibited:**
-- Commercial use of any kind
-- Redistribution or republication
-- Modification or derivative works
-- Use in other projects or products
-- Reverse engineering or decompilation
-- Any form of reproduction without explicit written permission
-
-### **✅ Permitted (with attribution):**
-- Educational viewing for learning purposes
-- Research references with proper citation
-- Personal study (code viewing only)
-
-**For permissions or inquiries, please contact the developer directly.**
-
----
-
 <div align="center">
 
 **🛡️ Made With Passion For Security! 🛡️**
@@ -173,8 +150,6 @@ This project is protected under copyright law. All intellectual property rights 
 *Enterprise-grade security for every personal computer user*
 
 ---
-
-**⚠️ IMPORTANT: This project is protected by copyright. Unauthorized use, reproduction, or distribution is strictly prohibited.**
 
 **🔒 Specifically designed for Windows PCs. Cross-platform support coming soon.**
 
