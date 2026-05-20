@@ -1,6 +1,6 @@
 pandas
 flask
 pywin32
-pycaw
+pycaw==20240210
 comtypes
 pynput
